@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {ProveedoresService} from './servicios/proveedores.service';
 import {ProveedoresComponent} from './proveedores/proveedores/proveedores.component';
 import {InicioComponent} from './inicio/inicio.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ProveedoresComponent,
-    InicioComponent
+    InicioComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
