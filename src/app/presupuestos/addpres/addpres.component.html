@@ -11,12 +11,19 @@
         <input type="text" class="form-control" id="proveedor" formControlName="proveedor">
         <p class="alert alert-danger"
            *ngIf="presupuestoForm.controls.proveedor.invalid && presupuestoForm.controls.proveedor.touched">
-          El capor proveedor es obligatorio
+          El campo proveedor es obligatorio
         </p>
       </div>
       <div class="form-group">
         <label for="fecha">Fecha</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.fecha.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck"
+           *ngIf="presupuestoForm.controls.fecha.invalid && presupuestoForm.controls.fecha.touched"></i>
         <input type="date" class="form-control" id="fecha" formControlName="fecha">
+        <p class="alert alert-danger"
+           *ngIf="presupuestoForm.controls.fecha.invalid && presupuestoForm.controls.fecha.touched">
+          El campo proveedor es obligatorio
+        </p>
       </div>
       <div class="form-group">
         <label for="concepto">Concepto</label>
@@ -28,6 +35,9 @@
       </div>
       <div class="form-group">
         <label for="tipo">Tipo de IVA</label>
+        <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.tipo.valid"></i>
+        <i class="fa fa-exclamation-circle uncheck"
+           *ngIf="presupuestoForm.controls.tipo.invalid && presupuestoForm.controls.tipo.touched"></i>
         <select class="form-control" id="tipo" formControlName="tipo">
           <option value="">Seleccione...</option>
           <option value="0">0 %</option>
@@ -35,6 +45,10 @@
           <option value="0.10">0.10 %</option>
           <option value="0.21">0.21 %</option>
         </select>
+        <p class="alert alert-danger"
+           *ngIf="presupuestoForm.controls.tipo.invalid && presupuestoForm.controls.tipo.touched">
+          El campo proveedor es obligatorio
+        </p>
       </div>
       <div class="form-group">
         <label for="iva">Importe IVA</label>
