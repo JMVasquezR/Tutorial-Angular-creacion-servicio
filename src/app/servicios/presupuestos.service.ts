@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, Response} from '@angular/http';
-import { map, filter, switchMap } from 'rxjs/operators';
+import {map, filter, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,9 @@ export class PresupuestosService {
         console.log(res.json());
         return res.json();
       }));
+  }
+
+  getPresupuestos() {
+    return this.http.get(this.presURL).pipe(map(res => res.json()));
   }
 }
