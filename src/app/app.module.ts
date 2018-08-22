@@ -3,9 +3,11 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {ProveedoresService} from './servicios/proveedores.service';
+import {PresupuestosService} from './servicios/presupuestos.service';
 import {ProveedoresComponent} from './proveedores/proveedores/proveedores.component';
 import {InicioComponent} from './inicio/inicio.component';
 import {HeaderComponent} from './header/header.component';
@@ -33,9 +35,10 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpModule
   ],
-  providers: [ProveedoresService],
+  providers: [ProveedoresService, PresupuestosService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
