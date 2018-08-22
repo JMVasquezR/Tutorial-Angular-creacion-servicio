@@ -11,6 +11,7 @@ export class AddproveeComponent implements OnInit {
   @ViewChild('formpro') formpro: NgForm;
 
   proveedor: any;
+  provincias: string[] = ['Ayacucho', 'Lima', 'Tarapoto', 'Cajamarca', 'Iquitos', 'Piura'];
 
   constructor() {
     this.proveedor = {
