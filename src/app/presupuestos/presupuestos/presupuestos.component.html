@@ -11,6 +11,7 @@
     <th>Tipo</th>
     <th>IVA</th>
     <th>Total</th>
+    <th>Editar</th>
   </tr>
   </thead>
   <tbody>
@@ -22,6 +23,9 @@
     <td>{{presupuesto.tipo}}</td>
     <td>{{presupuesto.iva}}</td>
     <td>{{presupuesto.total}}</td>
+    <td>
+      <button type="button" class="btn btn-success" routerLink="/editpres/{{presupuesto.id$}}">Editar</button>
+    </td>
   </tr>
   </tbody>
 </table>
