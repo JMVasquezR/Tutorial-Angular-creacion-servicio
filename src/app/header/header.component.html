@@ -8,17 +8,20 @@
   <div class="collapse navbar-collapse" id="containerNavbar">
     <ul class="navbar-nav mr-auto w-100 justify-content-end">
       <li class="nav-item" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact:true}">
+          [routerLinkActiveOptions]="{exact:true}" *ngIf="isAuth()">
         <a class="nav-link" routerLink="/">Inicio </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAuth()">
         <a class="nav-link" routerLink="/proveedores">Proveedores</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAuth()">
         <a class="nav-link" routerLink="/presupuestos">Presupuesto</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/inises">Inicio sesion</a>
+      <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth()">
+        <button class="btn btn-primary" routerLink="/inises">Inicio sesion</button>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAuth()">
+        <button class="btn btn-primary" (click)="onLogout()">Cerrar sesion</button>
       </li>
     </ul>
   </div>
