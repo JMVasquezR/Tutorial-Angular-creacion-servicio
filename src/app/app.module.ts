@@ -15,7 +15,8 @@ import {AddproveeComponent} from './proveedores/addprovee/addprovee.component';
 import {AddpresComponent} from './presupuestos/addpres/addpres.component';
 import {PresupuestosComponent} from './presupuestos/presupuestos/presupuestos.component';
 import {EditpresComponent} from './presupuestos/editpres/editpres.component';
-import { RegistroComponent } from './autentificacion/registro/registro.component';
+import {RegistroComponent} from './autentificacion/registro/registro.component';
+import {AutenticacionService} from './servicios/autenticacion.service';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -47,7 +48,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpModule
   ],
-  providers: [ProveedoresService, PresupuestosService],
+  providers: [ProveedoresService, PresupuestosService, AutenticacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
