@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {PresupuestosService} from '../../servicios/presupuestos.service';
+import {ProveedoresService} from '../../servicios/proveedores.service';
 
 @Component({
   selector: 'app-addpres',
@@ -16,7 +17,16 @@ export class AddpresComponent implements OnInit {
   iva: any = 0;
   total: any = 0;
 
-  constructor(private pf: FormBuilder, private presupuestoService: PresupuestosService) {
+  proveedores: any[] = [];
+
+  constructor(private pf: FormBuilder, private presupuestoService: PresupuestosService, private proveedoresService: ProveedoresService) {
+    this.proveedoresService.getProveedores().subscribe(proveedores => {
+      for (const id$ in proveedores) {
+        const p = proveedores[id$];
+        p.id$ = id$;
+        this.proveedores.push(proveedores[id$]);
+      }
+    });
   }
 
   ngOnInit() {
@@ -35,7 +45,8 @@ export class AddpresComponent implements OnInit {
 
   onSubmit() {
     this.presupuesto = this.savePresupuesto();
-    this.presupuestoService.postPresupuesto(this.presupuesto).subscribe(newpres => {});
+    this.presupuestoService.postPresupuesto(this.presupuesto).subscribe(newpres => {
+    });
     this.presupuestoForm.reset();
   }
 
