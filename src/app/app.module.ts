@@ -17,15 +17,16 @@ import {PresupuestosComponent} from './presupuestos/presupuestos/presupuestos.co
 import {EditpresComponent} from './presupuestos/editpres/editpres.component';
 import {RegistroComponent} from './autentificacion/registro/registro.component';
 import {AutenticacionService} from './servicios/autenticacion.service';
-import { InisesComponent } from './autentificacion/inises/inises.component';
+import {InisesComponent} from './autentificacion/inises/inises.component';
+import {GuardService} from './servicios/guard.service';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
-  {path: 'proveedores', component: ProveedoresComponent},
-  {path: 'addprovee', component: AddproveeComponent},
-  {path: 'addpres', component: AddpresComponent},
-  {path: 'editpres/:id', component: EditpresComponent},
-  {path: 'presupuestos', component: PresupuestosComponent},
+  {path: 'proveedores', component: ProveedoresComponent, canActivate: [GuardService]},
+  {path: 'addprovee', component: AddproveeComponent, canActivate: [GuardService]},
+  {path: 'addpres', component: AddpresComponent, canActivate: [GuardService]},
+  {path: 'editpres/:id', component: EditpresComponent, canActivate: [GuardService]},
+  {path: 'presupuestos', component: PresupuestosComponent, canActivate: [GuardService]},
   {path: 'registro', component: RegistroComponent},
   {path: 'inises', component: InisesComponent},
   {path: '**', component: InicioComponent}
@@ -51,7 +52,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpModule
   ],
-  providers: [ProveedoresService, PresupuestosService, AutenticacionService],
+  providers: [ProveedoresService, PresupuestosService, AutenticacionService, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
