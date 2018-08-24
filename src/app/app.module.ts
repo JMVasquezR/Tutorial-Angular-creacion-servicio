@@ -20,6 +20,9 @@ import {AutenticacionService} from './servicios/autenticacion.service';
 import {InisesComponent} from './autentificacion/inises/inises.component';
 import {GuardService} from './servicios/guard.service';
 
+import {FacturasModule} from './facturas/facturas.module';
+import {AddfraComponent} from './facturas/facturas/addfra/addfra.component';
+
 const routes: Routes = [
   {path: '', component: InicioComponent},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [GuardService]},
@@ -29,7 +32,8 @@ const routes: Routes = [
   {path: 'presupuestos', component: PresupuestosComponent, canActivate: [GuardService]},
   {path: 'registro', component: RegistroComponent},
   {path: 'inises', component: InisesComponent},
-  {path: '**', component: InicioComponent}
+  {path: '**', component: InicioComponent},
+  {path: 'addfra', component: AddfraComponent}
 ];
 
 @NgModule({
@@ -50,7 +54,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    HttpModule
+    HttpModule,
+    FacturasModule
   ],
   providers: [ProveedoresService, PresupuestosService, AutenticacionService, GuardService],
   bootstrap: [AppComponent]
