@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FacturasService } from '../../facturas.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FacturasService} from '../../facturas.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-addfra',
-  templateUrl: './addfra.component.html',
-  styleUrls: ['./addfra.component.css']
+  selector: 'app-editfra',
+  templateUrl: './editfra.component.html',
+  styleUrls: ['./editfra.component.css']
 })
-export class AddfraComponent implements OnInit {
+export class EditfraComponent implements OnInit {
 
   facturaForm: FormGroup;
   factura: any;
@@ -17,22 +17,29 @@ export class AddfraComponent implements OnInit {
   iva: any = 0;
   total: any = 0;
 
-  proveedores: any[] = [];
+  id: string;
 
   constructor(private pf: FormBuilder,
               private facturaService: FacturasService,
               private router: Router,
-              private activatedRouter: ActivatedRoute) { }
+              private activatedRouter: ActivatedRoute) {
+    this.activatedRouter.params
+      .subscribe(parametros => {
+        this.id = parametros['id'];
+        this.facturaService.getFactura(this.id)
+          .subscribe(factura => this.factura = factura);
+      });
+  }
 
   ngOnInit() {
 
     this.facturaForm = this.pf.group({
-      proveedor: ['', Validators.required ],
-      fecha: ['', Validators.required ],
-      concepto: ['', [ Validators.required, Validators.minLength(10)] ],
-      base: ['', Validators.required ],
-      tipo: ['', Validators.required ],
-      iva: this.iva ,
+      proveedor: ['', Validators.required],
+      fecha: ['', Validators.required],
+      concepto: ['', [Validators.required, Validators.minLength(10)]],
+      base: ['', Validators.required],
+      tipo: ['', Validators.required],
+      iva: this.iva,
       total: this.total
     });
 
@@ -51,10 +58,11 @@ export class AddfraComponent implements OnInit {
 
   onSubmit() {
     this.factura = this.saveFactura();
-    this.facturaService.postFactura( this.factura )
+    this.facturaService.putFactura(this.factura, this.id)
       .subscribe(newfra => {
-      })
-    this.facturaForm.reset();
+        this.router.navigate(['/facturas']);
+      });
+
   }
 
   saveFactura() {
